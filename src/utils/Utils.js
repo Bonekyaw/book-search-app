@@ -11,9 +11,9 @@ export const fetchDataHandler = (url, options={}) => {
 export const getUniqueArray = (array, comparisonKey) => {
 
     const uniqueArray = array
-        .map(e => e[comparisonKey])
-        .map((e, i, final) => final.indexOf(e) === i && i)
-        .filter(e => array[e]).map(e => array[e]);
+            .map(e => e[comparisonKey])
+            .map((e, i, final) => final.indexOf(e) === i && i)
+            .filter(e => array[e]).map(e => array[e]);
 
     return uniqueArray;
 };

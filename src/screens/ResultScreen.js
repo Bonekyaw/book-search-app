@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { 
     View,
-    Text,
     Platform,
     RefreshControl,
     StyleSheet
@@ -9,10 +8,7 @@ import {
 import { Constants } from 'expo';
 import AppStyles from '../styles/AppStyles';
 import { SearchBar } from 'react-native-elements';
-import * as Progress from 'react-native-progress';
 import Collapsible from 'react-native-collapsible-header';
-import ProgressiveImage from 'react-native-image-progress';
-import TouchableBounce from 'react-native/Libraries/Components/Touchable/TouchableBounce';
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 import BookCardComponent from '../components/BookCardComponent';
 import BookCardPlaceHolderComponent from '../components/BookCardPlaceHolderComponent';
@@ -182,9 +178,7 @@ const styles = StyleSheet.create({
     container: {
 
         flex: 1,
-        backgroundColor: primaryBackgroundColor,
-        // alignItems: 'center',
-        // justifyContent: 'center'
+        backgroundColor: primaryBackgroundColor
     }
 });
 

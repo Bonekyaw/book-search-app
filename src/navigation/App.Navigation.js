@@ -5,8 +5,8 @@ import BookDetailScreen from '../screens/BookDetailScreen';
 
 const AppStackNavigator = createStackNavigator({
 
-    SearchScreen: { screen: SearchScreen },
-    ResultScreen: { screen: ResultScreen },
+    // SearchScreen: { screen: SearchScreen },
+    // ResultScreen: { screen: ResultScreen },
     BookDetailScreen: { screen: BookDetailScreen }
 }, { headerMode: 'none' });
 

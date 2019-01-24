@@ -111,7 +111,7 @@ class SearchScreen extends Component {
                             value={this.state.searchQuery}
                             onChangeText={this._handleSearch}
                             cancelButtonTitle={'cancel'}
-                            clearIcon={ this.state.searchQuery === '' ? null : { name: 'cancel', color: '#FFF', style: { fontSize: 24, marginTop: Platform.OS === 'ios' ? responsiveHeight(1.2) : responsiveHeight(1.2), marginRight: responsiveWidth(2) } }}
+                            clearIcon={ this.state.searchQuery === '' ? null : { name: 'cancel', color: '#FFF', style: { fontSize: 24, marginTop: Platform.OS === 'ios' ? responsiveHeight(1.2) : responsiveHeight(0.8), marginRight: responsiveWidth(2) } }}
                             cancelButtonTitle={'Cancel'}
                             containerStyle={{
 
