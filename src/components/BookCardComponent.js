@@ -7,14 +7,18 @@ import { touchableButtonHandler } from '../utils/Utils';
 import TouchableBounce from 'react-native/Libraries/Components/Touchable/TouchableBounce';
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 
-const { primaryThemeColor, primaryBackgroundColor, lightFontStyles, calculateFontSizeByPlatform } = AppStyles;
+const { primaryThemeColor,
+        primaryBackgroundColor,
+        lightFontStyles,
+        cardBackgroundColor,
+        calculateFontSizeByPlatform } = AppStyles;
 
 const BookCardComponent = (props) => {
 
-    let { onPress } = props;
+    let { thumbnail, title, authors, publisher, onPress } = props;
 
     return (
-        <TouchableBounce onPress={() => touchableButtonHandler(onPress)} style={{ flexDirection: 'row', width: responsiveWidth(95), padding: 6, marginVertical: 6, borderRadius: 4, backgroundColor: '#333' }}>
+        <TouchableBounce onPress={() => touchableButtonHandler(onPress)} style={{ flexDirection: 'row', width: responsiveWidth(95), padding: 6, marginVertical: 6, borderRadius: 4, backgroundColor: cardBackgroundColor }}>
 
             <View style={{
                 flex: 1,
@@ -25,7 +29,7 @@ const BookCardComponent = (props) => {
             }}>
 
                 <ProgressiveImage
-                    source={{ uri: 'https://picsum.photos/200/300/?random' }}
+                    source={{ uri: thumbnail }}
                     style={{ borderRadius: 4, resizeMode: 'contain', backgroundColor: '#444', height: '100%', width: '100%' }}
                     imageStyle={{ borderRadius: 4 }}
                     indicator={Progress.Circle}
@@ -52,19 +56,19 @@ const BookCardComponent = (props) => {
                     backgroundColor: 'transparent'
                 }}>
 
-                    <Text numberOfLines={1} ellipsizeMode={'tail'} style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(3.00), ...lightFontStyles }}>JavaScript: The Good Parts JavaScript: The Good Parts</Text>
+                    <Text numberOfLines={1} ellipsizeMode={'tail'} style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(3.00), ...lightFontStyles }}>{title}</Text>
 
                 </View>
 
                 <View style={{
 
                     padding: 2,
-                    marginTop: 12,
+                    marginTop: responsiveHeight(2),
                     marginVertical: 2,
                     backgroundColor: 'transparent'
                 }}>
 
-                    <Text numberOfLines={1} ellipsizeMode={'tail'} style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(2.60), ...lightFontStyles }}>Douglas Crockford</Text>
+                    <Text numberOfLines={1} ellipsizeMode={'tail'} style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(2.50), ...lightFontStyles }}>{authors}</Text>
 
                 </View>
 
@@ -75,7 +79,7 @@ const BookCardComponent = (props) => {
                     backgroundColor: 'transparent'
                 }}>
 
-                    <Text numberOfLines={1} ellipsizeMode={'tail'} style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(2.60), ...lightFontStyles }}>O'Reilly Media, Inc.</Text>
+                    <Text numberOfLines={1} ellipsizeMode={'tail'} style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(2.50), ...lightFontStyles }}>{publisher}</Text>
 
                 </View>
 

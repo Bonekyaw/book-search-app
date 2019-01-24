@@ -14,9 +14,12 @@ import ProgressiveImage from 'react-native-image-progress';
 import TouchableBounce from 'react-native/Libraries/Components/Touchable/TouchableBounce';
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 import BookCardComponent from '../components/BookCardComponent';
+import BookCardPlaceHolderComponent from '../components/BookCardPlaceHolderComponent';
+import { fetchDataHandler } from '../utils/Utils';
+import Config from '../config/App.Config';
 
 const { primaryThemeColor, primaryBackgroundColor, lightFontStyles, calculateFontSizeByPlatform } = AppStyles;
-
+const { apiEndPoint } = Config;
 class ResultScreen extends Component {
 
     constructor(props) {
@@ -26,16 +29,50 @@ class ResultScreen extends Component {
         this.state = {
 
             isDataFetched: false,
+            listData: [...new Array(10)],
             filterSearch: ''
         };
     };
 
+    componentDidMount = async () => {
+
+        let { searchQuery } = this.props.navigation.state.params;
+
+        let { items: BookData } = await fetchDataHandler(`${apiEndPoint}?maxResults=40&q=${searchQuery}`);
+
+        let listData = BookData.map(book => {
+
+            let { volumeInfo: { title, authors, publisher, imageLinks: { thumbnail }}, id: bookId } = book;
+
+            return {
+
+                bookId,
+                thumbnail,
+                title,
+                authors: authors ? authors.toString().replace(/,/g, ', ') : '-',
+                publisher: publisher ? publisher.toString().replace(/"/g, '') : '-'
+            };
+        });
+
+        setTimeout(() => { this.setState({ isDataFetched: true, listData }); }, 2000, this);
+
+    };
+
     _handleSearch = (filterText) => this.setState({ filterSearch: filterText });
+
+    _navigateToBook = (bookId) => {
+
+        let { navigation } = this.props;
+
+        const navigationParams = { bookId };
+
+        navigation.navigate('BookDetailScreen', navigationParams);
+    };
 
     render() {
 
-        // let { searchQuery } = this.props.navigation.state.params;
-        let { isDataFetched } = this.state;
+        let { isDataFetched, listData } = this.state;
+
         return (
             <View style={styles.container}>
                 <Collapsible
@@ -81,86 +118,36 @@ class ResultScreen extends Component {
 
                     renderContent={
 
-                        <View style={{ backgroundColor: 'plum', paddingVertical: 3, alignItems: 'center' }}>
+                        <View style={{ backgroundColor: primaryBackgroundColor, paddingVertical: 3, alignItems: 'center' }}>
                             {
                                 isDataFetched ? (
 
                                     <React.Fragment>
-                                        <BookCardComponent onPress={() => alert('hello')} />
-                                        <BookCardComponent onPress={() => alert('hello')} />
-                                        <BookCardComponent onPress={() => alert('hello')} />
-                                        <BookCardComponent onPress={() => alert('hello')} />
+
+                                        {
+                                            listData.map(({ thumbnail, title, authors, publisher, bookId }) => {
+
+                                              return <BookCardComponent 
+                                                        key={bookId}
+                                                        title={title}
+                                                        authors={authors}
+                                                        publisher={publisher}
+                                                        thumbnail={thumbnail}
+                                                        onPress={() => this._navigateToBook(bookId)}
+                                                     />;
+                                            })
+                                        }
+
                                     </React.Fragment>
                                 ) : (
+                                    <React.Fragment>
+                                        {
+                                            listData.map((_, index) => {
 
-                                        <TouchableBounce style={{ flexDirection: 'row', width: responsiveWidth(95), padding: 6, marginVertical: 6, borderRadius: 4, backgroundColor: '#333' }}>
-
-                                            <View style={{
-                                                flex: 1,
-                                                height: responsiveHeight(16),
-                                                width: responsiveWidth(16),
-                                                backgroundColor: 'transparent',
-                                                padding: 2,
-                                            }}>
-
-                                                <ProgressiveImage
-                                                    source={{ uri: 'https://picsum.photos/200/300/?random' }}
-                                                    style={{ borderRadius: 4, resizeMode: 'contain', backgroundColor: '#444', height: '100%', width: '100%' }}
-                                                    imageStyle={{ borderRadius: 4 }}
-                                                    indicator={Progress.Circle}
-                                                    blurRadius={0}
-                                                    indicatorProps={{
-
-                                                        size: 28,
-                                                        color: '#FFF'
-                                                    }}
-                                                />
-
-                                            </View>
-
-                                            <View style={{
-
-                                                flex: 3,
-                                                padding: 4,
-                                                backgroundColor: 'transparent'
-                                            }}>
-                                                <View style={{
-
-                                                    padding: 2,
-                                                    marginBottom: 2,
-                                                    backgroundColor: 'transparent'
-                                                }}>
-
-                                                    <Text numberOfLines={1} ellipsizeMode={'tail'} style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(3.00), ...lightFontStyles }}>JavaScript: The Good Parts JavaScript: The Good Parts</Text>
-
-                                                </View>
-
-                                                <View style={{
-
-                                                    padding: 2,
-                                                    marginTop: 12,
-                                                    marginVertical: 2,
-                                                    backgroundColor: 'transparent'
-                                                }}>
-
-                                                    <Text numberOfLines={1} ellipsizeMode={'tail'} style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(2.60), ...lightFontStyles }}>Douglas Crockford</Text>
-
-                                                </View>
-
-                                                <View style={{
-
-                                                    padding: 2,
-                                                    marginTop: 2,
-                                                    backgroundColor: 'transparent'
-                                                }}>
-
-                                                    <Text numberOfLines={1} ellipsizeMode={'tail'} style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(2.60), ...lightFontStyles }}>O'Reilly Media, Inc.</Text>
-
-                                                </View>
-
-                                            </View>
-
-                                        </TouchableBounce>
+                                                return <BookCardPlaceHolderComponent key={index} />;
+                                            })
+                                        }
+                                    </React.Fragment>
                                 )
                             }
                             
