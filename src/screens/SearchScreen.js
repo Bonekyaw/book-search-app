@@ -27,16 +27,13 @@ class SearchScreen extends Component {
         super(props);
         this.state = {
 
-            searchQuery: ''
+            searchQuery: 'subtle'
         };
     };
 
     _handleSearch = (searchText) => this.setState({ searchQuery: searchText });
 
-    componentWillMount = () => {
-
-        setTimeout(() => { this.animation.play(); }, 100, this);
-    };
+    componentWillMount = () => { setTimeout(() => { this.animation.play(); }, 100, this); };
 
     // _playAnimation = () => {
     //     // if (!this.state.animation) {
@@ -65,12 +62,17 @@ class SearchScreen extends Component {
         let { navigation } = this.props;
         let { searchQuery } = this.state;
         
-        if(searchQuery === '') alert('Null search Query');
+        if(searchQuery === '') {
+            
+            alert('Null search Query');
+
+            return;
+        }
 
         const navigationParams = {
 
             internetConnectivity: true,
-            searchQuery
+            searchQuery: encodeURI(searchQuery)
         };
 
         navigation.navigate('ResultScreen', navigationParams);
