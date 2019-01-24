@@ -31,6 +31,7 @@ class SearchScreen extends Component {
         };
     };
 
+    _handleSearch = (searchText) => this.setState({ searchQuery: searchText });
 
     componentWillMount = () => {
 
@@ -65,7 +66,7 @@ class SearchScreen extends Component {
         let { searchQuery } = this.state;
         
         if(searchQuery === '') alert('Null search Query');
-        
+
         const navigationParams = {
 
             internetConnectivity: true,
@@ -106,7 +107,7 @@ class SearchScreen extends Component {
                             noIcon
                             platform={'ios'}
                             value={this.state.searchQuery}
-                            onChangeText={(searchQuery) => this.setState({ searchQuery })}
+                            onChangeText={this._handleSearch}
                             cancelButtonTitle={'cancel'}
                             clearIcon={ this.state.searchQuery === '' ? null : { name: 'cancel', color: '#FFF', style: { fontSize: 24, marginTop: Platform.OS === 'ios' ? responsiveHeight(1.2) : responsiveHeight(1.2), marginRight: responsiveWidth(2) } }}
                             cancelButtonTitle={'Cancel'}
