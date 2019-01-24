@@ -7,11 +7,12 @@ import {
     KeyboardAvoidingView,
     StyleSheet
 } from 'react-native';
+import { DangerZone } from 'expo';
 import { SearchBar } from 'react-native-elements';
 import AppStyles from '../styles/AppStyles';
 import * as ExpoIcon from '@expo/vector-icons';
 import TouchableBounce from 'react-native/Libraries/Components/Touchable/TouchableBounce';
-import { DangerZone } from 'expo';
+import { touchableButtonHandler } from '../utils/Utils';
 import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 import AppConfig from '../config/App.Config';
 
@@ -60,7 +61,18 @@ class SearchScreen extends Component {
 
     _searchHandler = () => {
 
-        setTimeout(() => { alert('Hello') }, 400, this);
+        let { navigation } = this.props;
+        let { searchQuery } = this.state;
+        
+        if(searchQuery === '') alert('Null search Query');
+        
+        const navigationParams = {
+
+            internetConnectivity: true,
+            searchQuery
+        };
+
+        navigation.navigate('ResultScreen', navigationParams);
     };
 
     render() {
@@ -123,7 +135,7 @@ class SearchScreen extends Component {
                             }}
                             placeholder={'Search Books...'} />
 
-                            <TouchableBounce onPress={() => this._searchHandler()} style={{ backgroundColor: 'tomato', alignItems: 'center', justifyContent: 'center', padding: 8, borderRadius: 100, marginTop: responsiveHeight(2), height: responsiveHeight(8), width: responsiveWidth(40) }}>
+                            <TouchableBounce onPress={() => touchableButtonHandler(this._searchHandler)} style={{ backgroundColor: 'tomato', alignItems: 'center', justifyContent: 'center', padding: 8, borderRadius: 100, marginTop: responsiveHeight(2), height: responsiveHeight(8), width: responsiveWidth(40) }}>
                                 <ExpoIcon.Ionicons name={'ios-search'} size={calculateFontSizeByPlatform(4.40)} color={'#FFF'} />
                             </TouchableBounce>
 

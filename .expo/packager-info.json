@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 872,
-  "expoServerNgrokUrl": "https://zq-8dt.karanpratapsingh.book-finder.exp.direct",
-  "packagerNgrokUrl": "https://packager.zq-8dt.karanpratapsingh.book-finder.exp.direct",
-  "ngrokPid": 887
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
