@@ -11,9 +11,11 @@ import { SearchBar } from 'react-native-elements';
 import * as Progress from 'react-native-progress';
 import Collapsible from 'react-native-collapsible-header';
 import ProgressiveImage from 'react-native-image-progress';
+import TouchableBounce from 'react-native/Libraries/Components/Touchable/TouchableBounce';
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
+import BookCardComponent from '../components/BookCardComponent';
 
-const { primaryThemeColor, primaryBackgroundColor, calculateFontSizeByPlatform } = AppStyles;
+const { primaryThemeColor, primaryBackgroundColor, lightFontStyles, calculateFontSizeByPlatform } = AppStyles;
 
 class ResultScreen extends Component {
 
@@ -23,6 +25,7 @@ class ResultScreen extends Component {
 
         this.state = {
 
+            isDataFetched: false,
             filterSearch: ''
         };
     };
@@ -32,7 +35,7 @@ class ResultScreen extends Component {
     render() {
 
         // let { searchQuery } = this.props.navigation.state.params;
-
+        let { isDataFetched } = this.state;
         return (
             <View style={styles.container}>
                 <Collapsible
@@ -69,7 +72,7 @@ class ResultScreen extends Component {
                                     fontFamily: 'Airbnb-Cereal',
                                     padding: Platform.OS === 'ios' ? responsiveHeight(0.80) : 0,
                                     fontSize: calculateFontSizeByPlatform(4.00),
-                                    backgroundColor: primaryThemeColor,
+                                    backgroundColor: '#333',
                                     height: Platform.OS === 'ios' ? responsiveHeight(8) : responsiveHeight(8)
                                 }}
                                 placeholder={'Search...'} />
@@ -78,52 +81,90 @@ class ResultScreen extends Component {
 
                     renderContent={
 
-                        <View style={{ flex: 1, backgroundColor: '#FAFAFA', alignItems: 'center' }}>
+                        <View style={{ backgroundColor: 'plum', paddingVertical: 3, alignItems: 'center' }}>
+                            {
+                                isDataFetched ? (
 
-                          <View style={{ width: responsiveWidth(95), padding: 4, backgroundColor: 'plum'  }}>
-                          
-                                <View style={{
-                                    flex: 1,
-                                    flexDirection: 'row',
-                                    backgroundColor: 'blue',
-                                    padding: 4
-                                }}>
-                                    <View style={{
-                                        flex: 1,
-                                        height: responsiveHeight(16),
-                                        width: responsiveWidth(16),
-                                        backgroundColor: 'red',
-                                        padding: 4,
-                                    }}>
+                                    <React.Fragment>
+                                        <BookCardComponent onPress={() => alert('hello')} />
+                                        <BookCardComponent onPress={() => alert('hello')} />
+                                        <BookCardComponent onPress={() => alert('hello')} />
+                                        <BookCardComponent onPress={() => alert('hello')} />
+                                    </React.Fragment>
+                                ) : (
 
-                                        <ProgressiveImage
-                                            source={{ uri: 'https://picsum.photos/200/300/?random' }}
-                                            style={{ borderRadius: 8, resizeMode: 'contain', backgroundColor: 'tomato', height: '100%', width: '100%' }}
-                                            imageStyle={{ borderRadius: 8 }}
-                                            indicator={Progress.Circle}
-                                            blurRadius={0}
-                                            indicatorProps={{
+                                        <TouchableBounce style={{ flexDirection: 'row', width: responsiveWidth(95), padding: 6, marginVertical: 6, borderRadius: 4, backgroundColor: '#333' }}>
 
-                                                size: 28,
-                                                color: '#FFF'
-                                            }}
-                                        />
+                                            <View style={{
+                                                flex: 1,
+                                                height: responsiveHeight(16),
+                                                width: responsiveWidth(16),
+                                                backgroundColor: 'transparent',
+                                                padding: 2,
+                                            }}>
 
-                                    </View>
+                                                <ProgressiveImage
+                                                    source={{ uri: 'https://picsum.photos/200/300/?random' }}
+                                                    style={{ borderRadius: 4, resizeMode: 'contain', backgroundColor: '#444', height: '100%', width: '100%' }}
+                                                    imageStyle={{ borderRadius: 4 }}
+                                                    indicator={Progress.Circle}
+                                                    blurRadius={0}
+                                                    indicatorProps={{
 
-                                    <View style={{
-                                        flex: 3,
-                                        padding: 4,
-                                        backgroundColor: 'green'
-                                    }}>
-                                        <View style={{
-                                            // flex: 1,
-                                            padding: 8,
-                                            backgroundColor: 'yellow'}} />
-                                       
-                                    </View>
-                                </View>
-                          </View>
+                                                        size: 28,
+                                                        color: '#FFF'
+                                                    }}
+                                                />
+
+                                            </View>
+
+                                            <View style={{
+
+                                                flex: 3,
+                                                padding: 4,
+                                                backgroundColor: 'transparent'
+                                            }}>
+                                                <View style={{
+
+                                                    padding: 2,
+                                                    marginBottom: 2,
+                                                    backgroundColor: 'transparent'
+                                                }}>
+
+                                                    <Text numberOfLines={1} ellipsizeMode={'tail'} style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(3.00), ...lightFontStyles }}>JavaScript: The Good Parts JavaScript: The Good Parts</Text>
+
+                                                </View>
+
+                                                <View style={{
+
+                                                    padding: 2,
+                                                    marginTop: 12,
+                                                    marginVertical: 2,
+                                                    backgroundColor: 'transparent'
+                                                }}>
+
+                                                    <Text numberOfLines={1} ellipsizeMode={'tail'} style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(2.60), ...lightFontStyles }}>Douglas Crockford</Text>
+
+                                                </View>
+
+                                                <View style={{
+
+                                                    padding: 2,
+                                                    marginTop: 2,
+                                                    backgroundColor: 'transparent'
+                                                }}>
+
+                                                    <Text numberOfLines={1} ellipsizeMode={'tail'} style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(2.60), ...lightFontStyles }}>O'Reilly Media, Inc.</Text>
+
+                                                </View>
+
+                                            </View>
+
+                                        </TouchableBounce>
+                                )
+                            }
+                            
+
                         </View>
 
                     } />
