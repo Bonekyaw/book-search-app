@@ -54,16 +54,17 @@ class BookDetailPlaceHolderComponent extends Component {
                         <View style={{ backgroundColor: 'transparent', padding: 1, marginVertical: 1 }}>
                             
                             <Placeholder.Box
-                                height={responsiveHeight(4)}
+                                height={responsiveHeight(3)}
                                 width={'100%'}
                                 radius={4}
                                 color={placeholderColor}
                                 onReady={false}
                                 animate={'fade'}
                             />
+
                         </View>
 
-                        <View style={{ backgroundColor: 'transparent', padding: 1, marginVertical: 1 }}>
+                        <View style={{ backgroundColor: 'transparent', padding: 1, marginVertical: 4 }}>
                             
                             <Placeholder.Box
                                 height={responsiveHeight(3)}
@@ -73,9 +74,10 @@ class BookDetailPlaceHolderComponent extends Component {
                                 onReady={false}
                                 animate={'fade'}
                             />
+
                         </View>
 
-                        <View style={{ backgroundColor: 'transparent', padding: 1, marginVertical: 1 }}>
+                        <View style={{ backgroundColor: 'transparent', padding: 1, marginVertical: 2 }}>
                             
                             <Placeholder.Box
                                 height={responsiveHeight(3)}
@@ -85,6 +87,7 @@ class BookDetailPlaceHolderComponent extends Component {
                                 onReady={false}
                                 animate={'fade'}
                             />
+
                         </View>
 
                         <View style={{ backgroundColor: 'transparent', padding: 1, marginTop: responsiveHeight(2) }}>
@@ -97,9 +100,10 @@ class BookDetailPlaceHolderComponent extends Component {
                                 onReady={false}
                                 animate={'fade'}
                             />
+
                         </View>
 
-                        <View style={{ justifyContent: 'center', borderRadius: 10, backgroundColor: 'transparent', padding: 1, marginVertical: 2 }}>
+                        <View style={{ justifyContent: 'center', borderRadius: 10, backgroundColor: 'transparent', padding: 1, marginVertical: 4 }}>
                             
                             <Placeholder.Box
                                 height={responsiveHeight(2.5)}
@@ -109,6 +113,7 @@ class BookDetailPlaceHolderComponent extends Component {
                                 onReady={false}
                                 animate={'fade'}
                             />
+
                         </View>
 
                         <View style={{ borderRadius: 10, backgroundColor: 'rgba(0, 0, 0, 0.20)', padding: 0, marginTop: 8 }}>

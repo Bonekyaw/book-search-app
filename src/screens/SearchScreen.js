@@ -7,7 +7,6 @@ import {
     NetInfo,
     StyleSheet
 } from 'react-native';
-import { DangerZone } from 'expo';
 import { SearchBar } from 'react-native-elements';
 import AppStyles from '../styles/AppStyles';
 import * as ExpoIcon from '@expo/vector-icons';
@@ -20,7 +19,6 @@ import LottieAnimationComponent from '../components/LottieAnimationComponent';
 
 const { primaryThemeColor, primaryBackgroundColor, lightFontStyles, calculateFontSizeByPlatform } = AppStyles;
 const { lottieAnimationSources: { bookAnimation } } = AppConfig;
-const { Lottie } = DangerZone;
 
 class SearchScreen extends Component {
 
@@ -29,7 +27,7 @@ class SearchScreen extends Component {
         super(props);
         this.state = {
 
-            searchQuery: 'sadsfadffasdf'
+            searchQuery: ''
         };
     };
 
