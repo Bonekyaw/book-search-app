@@ -131,7 +131,7 @@ class ResultScreen extends Component {
                                 value={filterSearch}
                                 onChangeText={this._handleSearch}
                                 cancelButtonTitle={'cancel'}
-                                clearIcon={{ name: 'cancel', color: '#FFF', style: { fontSize: 20, marginTop: Platform.OS === 'ios' ? responsiveHeight(0.95) : responsiveHeight(1.25) } }}
+                                clearIcon={{ name: 'cancel', color: '#FFF', style: { fontSize: 20, marginTop: Platform.OS === 'ios' ? responsiveHeight(0.95) : responsiveHeight(1.30) } }}
                                 cancelButtonTitle={'Cancel'}
                                 containerStyle={{
 

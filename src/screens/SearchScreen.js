@@ -7,6 +7,7 @@ import {
     NetInfo,
     StyleSheet
 } from 'react-native';
+import { Constants } from 'expo';
 import { SearchBar } from 'react-native-elements';
 import AppStyles from '../styles/AppStyles';
 import * as ExpoIcon from '@expo/vector-icons';

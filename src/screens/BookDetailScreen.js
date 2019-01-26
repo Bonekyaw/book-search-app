@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { 
-    Text,
-    StyleSheet
+    Text
 } from 'react-native';
-import { Constants } from 'expo';
 import AppStyles from '../styles/AppStyles';
 import TouchableBounce from 'react-native/Libraries/Components/Touchable/TouchableBounce';
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
@@ -86,16 +84,5 @@ class BookDetailScreen extends Component {
         );
     };
 };
-
-const styles = StyleSheet.create({
-
-    container: {
-
-        flex: 1,
-        paddingHorizontal: 8,
-        paddingTop: Constants.statusBarHeight,
-        backgroundColor: primaryBackgroundColor
-    }
-});
 
 export default BookDetailScreen;

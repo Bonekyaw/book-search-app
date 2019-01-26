@@ -4,6 +4,7 @@ import {
     Text,
     ScrollView,
     ImageBackground,
+    Platform,
     StyleSheet
 } from 'react-native';
 import { Constants, WebBrowser } from 'expo';
@@ -16,7 +17,7 @@ import TouchableBounce from 'react-native/Libraries/Components/Touchable/Touchab
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';;
 
 const { primaryBackgroundColor,
-        placeholderColor,
+        placeholderColor, statusBarHeight,
         lightFontStyles, calculateFontSizeByPlatform } = AppStyles;
 
 class BookDetailComponent extends Component {
@@ -51,7 +52,7 @@ class BookDetailComponent extends Component {
 
             <ImageBackground blurRadius={40} source={{ uri: large === null ? thumbnail : large }} style={[styles.container, { width: '100%', height: '100%' }]}>
 
-                <ScrollView showsVerticalScrollIndicator={'false'} contentContainerStyle={{ borderRadius: 10, backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: 4, paddingBottom: 6 }}>
+                <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ borderRadius: 10, backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: 4, paddingBottom: 6 }}>
 
                     <TouchableBounce onPress={() => goBack()} style={{ justifyContent: 'center', width: responsiveWidth(16), backgroundColor: 'transparent', marginTop: 6 }}>
                         <ExpoIcon.AntDesign name={'left'} color={'#FFF'} size={40} />
@@ -140,7 +141,7 @@ const styles = StyleSheet.create({
 
         flex: 1,
         paddingHorizontal: 8,
-        paddingTop: Constants.statusBarHeight,
+        paddingTop: statusBarHeight,
         backgroundColor: primaryBackgroundColor
     }
 });

@@ -28,6 +28,8 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.booksearch.app"
-    }
+    },
+    "description": "React native powered app that allows you to search through thousands of books.",
+    "githubUrl": "https://github.com/karanpratapsingh/book-search-app"
   }
 }

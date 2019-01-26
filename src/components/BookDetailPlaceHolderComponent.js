@@ -11,7 +11,7 @@ import Placeholder from 'rn-placeholder';
 import TouchableBounce from 'react-native/Libraries/Components/Touchable/TouchableBounce';
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 
-const { placeholderColor, cardBackgroundColor } = AppStyles;
+const { placeholderColor, cardBackgroundColor, statusBarHeight } = AppStyles;
 
 class BookDetailPlaceHolderComponent extends Component {
 
@@ -23,7 +23,7 @@ class BookDetailPlaceHolderComponent extends Component {
 
             <View style={[styles.container, { width: '100%', height: '100%' }]}>
 
-                <ScrollView showsVerticalScrollIndicator={'false'} contentContainerStyle={{ borderRadius: 10, backgroundColor: 'rgba(0, 0, 0, 0.2)', padding: 4, paddingBottom: 6 }}>
+                <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ borderRadius: 10, backgroundColor: 'rgba(0, 0, 0, 0.2)', padding: 4, paddingBottom: 6 }}>
 
                     <TouchableBounce onPress={() => goBack()} style={{ justifyContent: 'center', width: responsiveWidth(16), backgroundColor: 'transparent', marginTop: 6 }}>
                         <ExpoIcon.AntDesign name={'left'} color={'#FFF'} size={40} />
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
 
         flex: 1,
         paddingHorizontal: 8,
-        paddingTop: Constants.statusBarHeight,
+        paddingTop: statusBarHeight,
         backgroundColor: cardBackgroundColor
     }
 });
