@@ -30,7 +30,7 @@ const BookCardPlaceHolderComponent = (props) => {
 
                 <Placeholder.Box
                     height={'100%'}
-                    width='100%'
+                    width={'100%'}
                     radius={5}
                     color={placeholderColor}
                     onReady={false}

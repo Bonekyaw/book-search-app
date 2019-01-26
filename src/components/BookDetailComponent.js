@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { 
+import {
     View,
     Text,
     ScrollView,
@@ -16,22 +16,11 @@ import TouchableBounce from 'react-native/Libraries/Components/Touchable/Touchab
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 import { fetchDataHandler } from '../utils/Utils';
 import Config from '../config/App.Config';
-import BookDetailComponent from '../components/BookDetailComponent';
-import BookDetailPlaceHolderComponent from '../components/BookDetailPlaceHolderComponent';
 
 const { primaryThemeColor, primaryBackgroundColor, lightFontStyles, calculateFontSizeByPlatform } = AppStyles;
 const { apiEndPoint, defaultImageUrl } = Config;
 
-class BookDetailScreen extends Component {
-
-    constructor(props) {
-
-        super(props);
-        this.state = {
-
-            isDataFetched: false
-        };
-    };
+class BookDetailComponent extends Component {
 
     componentDidMount = () => {
 
@@ -40,9 +29,9 @@ class BookDetailScreen extends Component {
 
     _fetchBookData = async () => {
 
-    //     let res = await fetchDataHandler(`${apiEndPoint}/yng_CwAAQBAJ`);
+        //     let res = await fetchDataHandler(`${apiEndPoint}/yng_CwAAQBAJ`);
 
-    //    alert(JSON.stringify(res));
+        //    alert(JSON.stringify(res));
     };
 
     _renderViewMoreLess = (onPress, viewText) => {
@@ -52,33 +41,33 @@ class BookDetailScreen extends Component {
             <TouchableBounce onPress={() => onPress()} style={{ alignItems: 'center', width: responsiveWidth(20), borderRadius: 40, marginTop: responsiveHeight(2), marginBottom: responsiveHeight(1), marginLeft: responsiveWidth(66), paddingVertical: 4, backgroundColor: '#FFF' }}>
                 <Text style={{ color: '#000', fontSize: calculateFontSizeByPlatform(2.00), ...lightFontStyles }}>{viewText}</Text>
             </TouchableBounce>
-            
+
         );
     };
 
     render() {
 
         // let { bookId } = this.props.navigation.state.params;
-        let { isDataFetched } = this.state;
         let { goBack } = this.props.navigation;
 
         return (
 
-            <ImageBackground blurRadius={40} source={{ uri: 'http://books.google.com/books/content?id=yng_CwAAQBAJ&printsec=frontcover&img=1&zoom=4&edge=curl&imgtk=AFLRE7111VdLaU3WMRKaP7yyA4juPZMQUC7OI1KS6-vq9Qc2L973KjgF4WQVO05d3nQ6Ra4LX-hBkLzFarDWsY3iSiupeCMFzDJpF9l-prvmZWK2-4a2H42HwPbt6_VT85f16VysYJ5v&source=gbs_api' }} style={[styles.container, { width: '100%', height: '100%' }]}>
+            // <ImageBackground blurRadius={40} source={{ uri: 'http://books.google.com/books/content?id=yng_CwAAQBAJ&printsec=frontcover&img=1&zoom=4&edge=curl&imgtk=AFLRE7111VdLaU3WMRKaP7yyA4juPZMQUC7OI1KS6-vq9Qc2L973KjgF4WQVO05d3nQ6Ra4LX-hBkLzFarDWsY3iSiupeCMFzDJpF9l-prvmZWK2-4a2H42HwPbt6_VT85f16VysYJ5v&source=gbs_api' }} style={[styles.container, { width: '100%', height: '100%' }]}>
 
-                <ScrollView showsVerticalScrollIndicator={'false'} contentContainerStyle={{ borderRadius: 10, backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: 4, paddingBottom: 6 }}>
+            //     <ScrollView showsVerticalScrollIndicator={'false'} contentContainerStyle={{ borderRadius: 10, backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: 4, paddingBottom: 6 }}>
 
-                    <TouchableBounce onPress={() => goBack() } style={{ justifyContent: 'center', width: responsiveWidth(16), backgroundColor: 'transparent', marginTop: 6 }}>
-                        <ExpoIcon.AntDesign name={'left'} color={'#FFF'} size={40} />
-                    </TouchableBounce>
+                    // <TouchableBounce onPress={() => goBack()} style={{ justifyContent: 'center', width: responsiveWidth(16), backgroundColor: 'transparent', marginTop: 6 }}>
+                    //     <ExpoIcon.AntDesign name={'left'} color={'#FFF'} size={40} />
+                    // </TouchableBounce>
 
-                    {/* <View style={{ flex: 1, backgroundColor: 'transparent', padding: 4 }}>
+                    <View style={{ flex: 1, backgroundColor: 'transparent', padding: 4 }}>
                         <View style={{
                             alignItems: 'center',
                             height: responsiveHeight(40),
                             width: '100%',
                             backgroundColor: 'transparent',
-                            padding: 2, marginBottom: responsiveHeight(2) }}>
+                            padding: 2, marginBottom: responsiveHeight(2)
+                        }}>
 
                             <ProgressiveImage
                                 source={{ uri: 'http://books.google.com/books/content?id=yng_CwAAQBAJ&printsec=frontcover&img=1&zoom=4&edge=curl&imgtk=AFLRE7111VdLaU3WMRKaP7yyA4juPZMQUC7OI1KS6-vq9Qc2L973KjgF4WQVO05d3nQ6Ra4LX-hBkLzFarDWsY3iSiupeCMFzDJpF9l-prvmZWK2-4a2H42HwPbt6_VT85f16VysYJ5v&source=gbs_api' }}
@@ -95,11 +84,11 @@ class BookDetailScreen extends Component {
                         </View>
 
                         <View style={{ backgroundColor: 'transparent', padding: 1, marginVertical: 1 }}>
-                            <Text numberOfLines={1} ellipsizeMode={'tail'} style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(4.20), ...lightFontStyles }}>The Subtle Art of Not Giving a F*ck</Text>                                
+                            <Text numberOfLines={1} ellipsizeMode={'tail'} style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(4.20), ...lightFontStyles }}>The Subtle Art of Not Giving a F*ck</Text>
                         </View>
 
                         <View style={{ backgroundColor: 'transparent', padding: 1, marginVertical: 1 }}>
-                            <Text numberOfLines={1} ellipsizeMode={'tail'} style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(3.20), ...lightFontStyles }}>Mark Manson</Text>                        
+                            <Text numberOfLines={1} ellipsizeMode={'tail'} style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(3.20), ...lightFontStyles }}>Mark Manson</Text>
                         </View>
 
                         <View style={{ backgroundColor: 'transparent', padding: 1, marginVertical: 1 }}>
@@ -127,7 +116,7 @@ class BookDetailScreen extends Component {
                                 </Text>
 
                             </ViewMoreText>
-                            
+
                         </View>
 
                         <TouchableBounce onPress={() => undefined} style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)', alignItems: 'center', justifyContent: 'center', padding: 4, borderRadius: 100, marginTop: 8 }}>
@@ -138,21 +127,10 @@ class BookDetailScreen extends Component {
                             <ExpoIcon.Ionicons name={'ios-book'} size={calculateFontSizeByPlatform(4.00)} color={'#FFF'} />
                         </TouchableBounce>
 
-                    </View> */}
-                    {
-                        isDataFetched ? (
-                            
-                            <BookDetailComponent {...this.props} />
-                            
-                            ) : (
-                            
-                            <BookDetailPlaceHolderComponent {...this.props} />
-                        )
-                    }
-                    
-                </ScrollView>
-                   
-            </ImageBackground>
+                    </View>
+            //     {/* </ScrollView>
+
+            // </ImageBackground> */}
         );
     };
 };
@@ -168,4 +146,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default BookDetailScreen;
+export default BookDetailComponent;
