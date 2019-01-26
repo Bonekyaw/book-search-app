@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
 import { 
-    View,
     Text,
-    ScrollView,
-    ImageBackground,
     StyleSheet
 } from 'react-native';
 import { Constants } from 'expo';
 import AppStyles from '../styles/AppStyles';
-import * as Progress from 'react-native-progress';
-import ProgressiveImage from 'react-native-image-progress';
-import * as ExpoIcon from '@expo/vector-icons';
-import ViewMoreText from 'react-native-view-more-text';
 import TouchableBounce from 'react-native/Libraries/Components/Touchable/TouchableBounce';
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 import { fetchDataHandler } from '../utils/Utils';
@@ -19,8 +12,8 @@ import Config from '../config/App.Config';
 import BookDetailComponent from '../components/BookDetailComponent';
 import BookDetailPlaceHolderComponent from '../components/BookDetailPlaceHolderComponent';
 
-const { primaryThemeColor, primaryBackgroundColor, lightFontStyles, calculateFontSizeByPlatform } = AppStyles;
-const { apiEndPoint, defaultImageUrl } = Config;
+const { primaryBackgroundColor, lightFontStyles, calculateFontSizeByPlatform } = AppStyles;
+const { apiEndPoint } = Config;
 
 class BookDetailScreen extends Component {
 
@@ -56,7 +49,7 @@ class BookDetailScreen extends Component {
         };
 
         setTimeout(() => { this.setState({ isDataFetched: true, bookData }); }, 1000, this);
-        // alert(JSON.stringify(bookData));
+
     };
 
     _renderViewMoreLess = (onPress, viewText) => {
@@ -72,13 +65,10 @@ class BookDetailScreen extends Component {
 
     render() {
 
-        // let { bookId } = this.props.navigation.state.params;
         let { isDataFetched, bookData } = this.state;
         let { goBack } = this.props.navigation;
 
         return (
-
-
 
                     <React.Fragment>
                         {

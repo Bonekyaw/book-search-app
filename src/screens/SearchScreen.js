@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { 
     View,
-    Text,
     Platform,
     StatusBar,
     KeyboardAvoidingView,
@@ -13,7 +12,7 @@ import AppStyles from '../styles/AppStyles';
 import * as ExpoIcon from '@expo/vector-icons';
 import TouchableBounce from 'react-native/Libraries/Components/Touchable/TouchableBounce';
 import { touchableButtonHandler } from '../utils/Utils';
-import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
+import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 import AppConfig from '../config/App.Config';
 
 const { primaryThemeColor, primaryBackgroundColor, lightFontStyles, calculateFontSizeByPlatform } = AppStyles;
@@ -86,7 +85,7 @@ class SearchScreen extends Component {
                 <StatusBar barStyle={'light-content'} animated />
 
                 <KeyboardAvoidingView enabled behavior={'position'}>
-                
+
                     <View style={{ alignItems: 'center', backgroundColor: 'transparent', margin: responsiveHeight(0), height: responsiveHeight(45), width: responsiveWidth(100) }}>
                         
                             <Lottie

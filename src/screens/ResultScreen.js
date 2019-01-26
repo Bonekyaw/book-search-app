@@ -15,7 +15,7 @@ import BookCardPlaceHolderComponent from '../components/BookCardPlaceHolderCompo
 import { fetchDataHandler, getUniqueArray } from '../utils/Utils';
 import Config from '../config/App.Config';
 
-const { primaryThemeColor, primaryBackgroundColor, lightFontStyles, calculateFontSizeByPlatform } = AppStyles;
+const { primaryBackgroundColor, lightFontStyles, calculateFontSizeByPlatform } = AppStyles;
 const { apiEndPoint, defaultImageUrl } = Config;
 
 class ResultScreen extends Component {
@@ -169,7 +169,6 @@ class ResultScreen extends Component {
                                 )
                             }
                             
-
                         </View>
 
                     } />

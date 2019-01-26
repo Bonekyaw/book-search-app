@@ -15,8 +15,7 @@ import ViewMoreText from 'react-native-view-more-text';
 import TouchableBounce from 'react-native/Libraries/Components/Touchable/TouchableBounce';
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';;
 
-const { primaryThemeColor,
-        primaryBackgroundColor,
+const { primaryBackgroundColor,
         placeholderColor,
         lightFontStyles, calculateFontSizeByPlatform } = AppStyles;
 
@@ -127,6 +126,7 @@ class BookDetailComponent extends Component {
                         </TouchableBounce>
                         
                     </View>
+
                   </ScrollView>
 
              </ImageBackground> 

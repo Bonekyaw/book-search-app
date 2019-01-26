@@ -1,24 +1,17 @@
 import React, { Component } from 'react';
 import {
     View,
-    Text,
     ScrollView,
-    ImageBackground,
     StyleSheet
 } from 'react-native';
 import { Constants } from 'expo';
 import AppStyles from '../styles/AppStyles';
-import * as Progress from 'react-native-progress';
-import ProgressiveImage from 'react-native-image-progress';
 import * as ExpoIcon from '@expo/vector-icons';
-import ViewMoreText from 'react-native-view-more-text';
 import Placeholder from 'rn-placeholder';
 import TouchableBounce from 'react-native/Libraries/Components/Touchable/TouchableBounce';
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
-import { fetchDataHandler } from '../utils/Utils';
-import Config from '../config/App.Config';
 
-const { primaryBackgroundColor , placeholderColor, cardBackgroundColor } = AppStyles;
+const { placeholderColor, cardBackgroundColor } = AppStyles;
 
 class BookDetailPlaceHolderComponent extends Component {
 
