@@ -1,5 +1,5 @@
 ## Book Search App
-#### This app allows you to search through thousands of books.
+#### React native powered app that allows you to search through thousands of books.
 
 ### Technologies used : 
 
