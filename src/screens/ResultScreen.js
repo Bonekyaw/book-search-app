@@ -14,10 +14,12 @@ import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimen
 import BookCardComponent from '../components/BookCardComponent';
 import BookCardPlaceHolderComponent from '../components/BookCardPlaceHolderComponent';
 import { fetchDataHandler, getUniqueArray } from '../utils/Utils';
-import Config from '../config/App.Config';
+import AppConfig from '../config/App.Config';
+import LottieAnimationComponent from '../components/LottieAnimationComponent';
 
 const { primaryBackgroundColor, lightFontStyles, calculateFontSizeByPlatform } = AppStyles;
-const { apiEndPoint, defaultImageUrl } = Config;
+const { apiEndPoint, defaultImageUrl, 
+        lottieAnimationSources: { networkAnimation }} = AppConfig;
 
 class ResultScreen extends Component {
 
@@ -30,6 +32,7 @@ class ResultScreen extends Component {
             isDataFetched: false,
             isListRefreshing: false,
             listData: [...new Array(10)],
+            noResult: false,
             filterSearch: ''
         };
     };
@@ -38,9 +41,18 @@ class ResultScreen extends Component {
 
     _fetchListData = async () => {
 
-        let { searchQuery } = this.props.navigation.state.params;
+        let { searchQuery, internetConnectivity } = this.props.navigation.state.params;
 
-        let { items: BookData } = await fetchDataHandler(`${apiEndPoint}?maxResults=40&q=${searchQuery}`);
+        if(!internetConnectivity) return;
+
+        let { items: BookData, totalItems } = await fetchDataHandler(`${apiEndPoint}?maxResults=40&q=${searchQuery}`);
+        
+        if(!totalItems) {
+            
+            this.setState({ noResult: true });
+
+            return;
+        }
 
         let listData = getUniqueArray(BookData.map(book => {
 
@@ -81,7 +93,8 @@ class ResultScreen extends Component {
 
     render() {
 
-        let { isDataFetched, isListRefreshing, listData, filterSearch } = this.state;
+        let { isDataFetched, isListRefreshing, listData, filterSearch, noResult } = this.state;
+        let { internetConnectivity } = this.props.navigation.state.params;
 
         let filteredListData = isDataFetched ? [...listData].filter(book => {
 
@@ -147,59 +160,108 @@ class ResultScreen extends Component {
                     renderContent={
 
                         <View style={{ backgroundColor: primaryBackgroundColor, paddingVertical: 3, alignItems: 'center' }}>
+
+
+                            
                             {
-                                isDataFetched ? (
+                                noResult ? (
 
                                     <React.Fragment>
 
-                                        {
+                                        <LottieAnimationComponent animationSource={networkAnimation} />
 
-                                            filteredListData.length === 0 ? (
+                                        <View style={{ alignItems: 'center', justifyContent: 'center', padding: 8, marginTop: responsiveHeight(4), width: '100%', backgroundColor: 'transparent' }}>
 
-                                                <View style={{ alignItems: 'center', justifyContent: 'center', padding: 8, width: '100%', backgroundColor: 'transparent' }}>
+                                            <Text style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(5.60), ...lightFontStyles }}>No Results Found</Text>
 
-                                                    <Text style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(4.00), ...lightFontStyles }}>No Books Found</Text>
-                                                   
-                                                </View>
-
-                                            ) : (
-
-                                             <React.Fragment>
-                                                 {
-
-                                                   filteredListData.map(bookDetails => {
-
-                                                        let { thumbnail, title, authors, publisher, bookId } = bookDetails;
-
-                                                        return <BookCardComponent 
-                                                                    key={bookId}
-                                                                    title={title}
-                                                                    authors={authors}
-                                                                    publisher={publisher}
-                                                                    thumbnail={thumbnail}
-                                                                    onPress={() => this._navigateToBook(bookDetails)}
-                                                                />;
-                                                    })  
-                                                 }
-                                             </React.Fragment>
-
-                                            )
-
-                                        }
+                                        </View>
 
                                     </React.Fragment>
                                 ) : (
                                     <React.Fragment>
-                                        {
-                                            listData.map((_, index) => {
 
-                                                return <BookCardPlaceHolderComponent key={index} />;
-                                            })
-                                        }
+
+                                            {
+                                                internetConnectivity ? (
+
+                                                    <React.Fragment>
+
+                                                        {
+                                                            isDataFetched ? (
+
+                                                                <React.Fragment>
+
+                                                                    {
+
+                                                                        filteredListData.length === 0 ? (
+
+                                                                            <View style={{ alignItems: 'center', justifyContent: 'center', padding: 8, width: '100%', backgroundColor: 'transparent' }}>
+
+                                                                                <Text style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(4.00), ...lightFontStyles }}>No Books Found</Text>
+
+                                                                            </View>
+
+                                                                        ) : (
+
+                                                                                <React.Fragment>
+                                                                                    {
+
+                                                                                        filteredListData.map(bookDetails => {
+
+                                                                                            let { thumbnail, title, authors, publisher, bookId } = bookDetails;
+
+                                                                                            return <BookCardComponent
+                                                                                                key={bookId}
+                                                                                                title={title}
+                                                                                                authors={authors}
+                                                                                                publisher={publisher}
+                                                                                                thumbnail={thumbnail}
+                                                                                                onPress={() => this._navigateToBook(bookDetails)}
+                                                                                            />;
+                                                                                        })
+                                                                                    }
+                                                                                </React.Fragment>
+
+                                                                            )
+                                                                    }
+
+                                                                </React.Fragment>
+                                                            ) : (
+                                                                    <React.Fragment>
+                                                                        {
+                                                                            listData.map((_, index) => {
+
+                                                                                return <BookCardPlaceHolderComponent key={index} />;
+                                                                            })
+                                                                        }
+                                                                    </React.Fragment>
+                                                                )
+                                                        }
+
+                                                    </React.Fragment>
+
+                                                ) : (
+
+                                                        <React.Fragment>
+
+                                                            <LottieAnimationComponent animationSource={networkAnimation} />
+
+                                                            <View style={{ alignItems: 'center', justifyContent: 'center', padding: 8, marginTop: responsiveHeight(4), width: '100%', backgroundColor: 'transparent' }}>
+
+                                                                <Text style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(5.60), ...lightFontStyles }}>No Internet</Text>
+
+                                                            </View>
+
+                                                        </React.Fragment>
+                                                    )
+                                            }
+
+
                                     </React.Fragment>
                                 )
                             }
-                            
+                                        
+                    
                         </View>
 
                     } />

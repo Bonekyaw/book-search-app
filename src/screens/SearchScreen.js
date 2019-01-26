@@ -19,7 +19,7 @@ import AppConfig from '../config/App.Config';
 import LottieAnimationComponent from '../components/LottieAnimationComponent';
 
 const { primaryThemeColor, primaryBackgroundColor, lightFontStyles, calculateFontSizeByPlatform } = AppStyles;
-const { lottieAnimationSources: { bookAnimation } } = AppConfig;
+const { lottieAnimationSources: { bookAnimation, networkAnimation } } = AppConfig;
 const { Lottie } = DangerZone;
 
 class SearchScreen extends Component {
@@ -34,8 +34,6 @@ class SearchScreen extends Component {
     };
 
     _handleSearch = (searchText) => this.setState({ searchQuery: searchText });
-
-    componentWillMount = () => { setTimeout(() => { this.animation.play(); }, 100, this); };
 
     _searchHandler = async () => {
 
@@ -52,7 +50,7 @@ class SearchScreen extends Component {
 
         const navigationParams = {
 
-            internetConnectivity: false,
+            internetConnectivity: !(type === 'none'),
             searchQuery: encodeURI(searchQuery)
         };
 
@@ -68,7 +66,7 @@ class SearchScreen extends Component {
 
                 <KeyboardAvoidingView enabled behavior={'position'}>
 
-                    <View style={{ alignItems: 'center', backgroundColor: 'transparent', margin: responsiveHeight(0), height: responsiveHeight(45), width: responsiveWidth(100) }}>
+                    {/* <View style={{ alignItems: 'center', backgroundColor: 'transparent', margin: responsiveHeight(0), height: responsiveHeight(45), width: responsiveWidth(100) }}>
                         
                             <Lottie
                                 loop
@@ -85,8 +83,9 @@ class SearchScreen extends Component {
                             />
 
                         
-                    </View>
-                    {/* <LottieAnimationComponent animationSource={bookAnimation} /> */}
+                    </View> */}
+
+                    <LottieAnimationComponent animationSource={bookAnimation} />
 
                     <View style={{ alignItems: 'center', justifyContent: 'space-around', backgroundColor: 'transparent', padding: 4 }}>
 
