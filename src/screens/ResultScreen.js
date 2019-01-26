@@ -19,7 +19,7 @@ import LottieAnimationComponent from '../components/LottieAnimationComponent';
 
 const { primaryBackgroundColor, lightFontStyles, calculateFontSizeByPlatform } = AppStyles;
 const { apiEndPoint, defaultImageUrl, 
-        lottieAnimationSources: { networkAnimation }} = AppConfig;
+        lottieAnimationSources: { networkAnimation, noResultAnimation }} = AppConfig;
 
 class ResultScreen extends Component {
 
@@ -168,9 +168,12 @@ class ResultScreen extends Component {
 
                                     <React.Fragment>
 
-                                        <LottieAnimationComponent animationSource={networkAnimation} />
+                                        <LottieAnimationComponent 
+                                                style={{ height: responsiveHeight(50), width: responsiveHeight(50), marginRight: responsiveWidth(10) }} 
+                                                animationSource={noResultAnimation}
+                                        />
 
-                                        <View style={{ alignItems: 'center', justifyContent: 'center', padding: 8, marginTop: responsiveHeight(4), width: '100%', backgroundColor: 'transparent' }}>
+                                        <View style={{ alignItems: 'center', justifyContent: 'center', padding: 8, marginTop: responsiveHeight(2), width: '100%', backgroundColor: 'transparent' }}>
 
                                             <Text style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(5.60), ...lightFontStyles }}>No Results Found</Text>
 
@@ -203,64 +206,62 @@ class ResultScreen extends Component {
 
                                                                         ) : (
 
-                                                                                <React.Fragment>
-                                                                                    {
+                                                                            <React.Fragment>
+                                                                                {
 
-                                                                                        filteredListData.map(bookDetails => {
+                                                                                    filteredListData.map(bookDetails => {
 
-                                                                                            let { thumbnail, title, authors, publisher, bookId } = bookDetails;
+                                                                                        let { thumbnail, title, authors, publisher, bookId } = bookDetails;
 
-                                                                                            return <BookCardComponent
-                                                                                                key={bookId}
-                                                                                                title={title}
-                                                                                                authors={authors}
-                                                                                                publisher={publisher}
-                                                                                                thumbnail={thumbnail}
-                                                                                                onPress={() => this._navigateToBook(bookDetails)}
-                                                                                            />;
-                                                                                        })
-                                                                                    }
-                                                                                </React.Fragment>
+                                                                                        return <BookCardComponent
+                                                                                            key={bookId}
+                                                                                            title={title}
+                                                                                            authors={authors}
+                                                                                            publisher={publisher}
+                                                                                            thumbnail={thumbnail}
+                                                                                            onPress={() => this._navigateToBook(bookDetails)}
+                                                                                        />;
+                                                                                    })
+                                                                                }
+                                                                            </React.Fragment>
 
-                                                                            )
+                                                                        )
                                                                     }
 
                                                                 </React.Fragment>
                                                             ) : (
-                                                                    <React.Fragment>
-                                                                        {
-                                                                            listData.map((_, index) => {
+                                                                <React.Fragment>
+                                                                    {
+                                                                        listData.map((_, index) => {
 
-                                                                                return <BookCardPlaceHolderComponent key={index} />;
-                                                                            })
-                                                                        }
-                                                                    </React.Fragment>
-                                                                )
+                                                                            return <BookCardPlaceHolderComponent key={index} />;
+                                                                        })
+                                                                    }
+                                                                </React.Fragment>
+                                                            )
                                                         }
 
                                                     </React.Fragment>
 
                                                 ) : (
 
-                                                        <React.Fragment>
+                                                    <React.Fragment>
 
-                                                            <LottieAnimationComponent animationSource={networkAnimation} />
+                                                        <LottieAnimationComponent animationSource={networkAnimation} />
 
-                                                            <View style={{ alignItems: 'center', justifyContent: 'center', padding: 8, marginTop: responsiveHeight(4), width: '100%', backgroundColor: 'transparent' }}>
+                                                        <View style={{ alignItems: 'center', justifyContent: 'center', padding: 8, marginTop: responsiveHeight(4), width: '100%', backgroundColor: 'transparent' }}>
 
-                                                                <Text style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(5.60), ...lightFontStyles }}>No Internet</Text>
+                                                            <Text style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(5.60), ...lightFontStyles }}>No Internet</Text>
 
-                                                            </View>
+                                                        </View>
 
-                                                        </React.Fragment>
-                                                    )
+                                                    </React.Fragment>
+                                                )
                                             }
-
 
                                     </React.Fragment>
                                 )
-                            }
-                                        
+                            }                  
                     
                         </View>
 

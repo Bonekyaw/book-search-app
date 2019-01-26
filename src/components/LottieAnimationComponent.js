@@ -15,7 +15,7 @@ class LottieAnimationComponent extends Component {
 
     render() {
 
-        let { animationSource } = this.props;
+        let { animationSource, style } = this.props;
 
         return (
             <View style={{ alignItems: 'center', backgroundColor: 'transparent', margin: responsiveHeight(0), height: responsiveHeight(45), width: responsiveWidth(100) }}>
@@ -29,7 +29,7 @@ class LottieAnimationComponent extends Component {
 
                         marginLeft: responsiveWidth(4),
                         width: responsiveHeight(60),
-                        height: responsiveHeight(60),
+                        height: responsiveHeight(60), ...style,
                         backgroundColor: primaryBackgroundColor,
                     }}
                 />

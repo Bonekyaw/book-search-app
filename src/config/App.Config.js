@@ -5,7 +5,8 @@ const AppConfig = {
     lottieAnimationSources: {
 
         bookAnimation: require('../../assets/animations/loading_book.json'),
-        networkAnimation: require('../../assets/animations/network_error.json')
+        networkAnimation: require('../../assets/animations/network_error.json'),
+        noResultAnimation: require('../../assets/animations/not_found.json')
     }
 };
 

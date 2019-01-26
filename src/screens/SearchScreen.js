@@ -19,7 +19,7 @@ import AppConfig from '../config/App.Config';
 import LottieAnimationComponent from '../components/LottieAnimationComponent';
 
 const { primaryThemeColor, primaryBackgroundColor, lightFontStyles, calculateFontSizeByPlatform } = AppStyles;
-const { lottieAnimationSources: { bookAnimation, networkAnimation } } = AppConfig;
+const { lottieAnimationSources: { bookAnimation } } = AppConfig;
 const { Lottie } = DangerZone;
 
 class SearchScreen extends Component {
@@ -29,7 +29,7 @@ class SearchScreen extends Component {
         super(props);
         this.state = {
 
-            searchQuery: 's'
+            searchQuery: 'sadsfadffasdf'
         };
     };
 
