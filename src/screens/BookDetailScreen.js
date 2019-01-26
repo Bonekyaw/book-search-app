@@ -37,13 +37,14 @@ class BookDetailScreen extends Component {
         
         let { bookDetails } = this.props.navigation.state.params;
 
-        let { volumeInfo: { imageLinks: { medium, large }, infoLink },
+        let { volumeInfo: { categories, imageLinks: { medium, large }, infoLink },
               accessInfo: { webReaderLink } } = await fetchDataHandler(`${apiEndPoint}/${bookDetails.bookId}`);
 
         let bookData = {
 
             ...bookDetails,
             images: { medium: medium ? medium : null, large: large ? large : null },
+            categories: categories ? categories.toString().replace(/,/g, ', ') : '-',
             infoLink,
             webReaderLink
         };
@@ -66,7 +67,6 @@ class BookDetailScreen extends Component {
     render() {
 
         let { isDataFetched, bookData } = this.state;
-        let { goBack } = this.props.navigation;
 
         return (
 

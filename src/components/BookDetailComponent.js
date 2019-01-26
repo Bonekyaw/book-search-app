@@ -42,8 +42,8 @@ class BookDetailComponent extends Component {
 
     render() {
 
-        let { bookData: { thumbnail, title, authors, publisher, publishedDate,
-                          description, images: { medium, large }}} = this.props;
+        let { bookData: { thumbnail, title, authors, publishedDate, publisher, 
+                          categories, description, images: { medium, large }}} = this.props;
 
         let { goBack } = this.props.navigation;
 
@@ -98,7 +98,7 @@ class BookDetailComponent extends Component {
                         </View>
 
                         <View style={{ justifyContent: 'center', borderRadius: 10, backgroundColor: 'transparent', padding: 1, marginVertical: 2 }}>
-                            <Text numberOfLines={1} ellipsizeMode={'tail'} style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(2.40), ...lightFontStyles }}>Philosophy / General</Text>
+                            <Text numberOfLines={1} ellipsizeMode={'tail'} style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(2.40), ...lightFontStyles }}>{categories}</Text>
                         </View>
 
                         <View style={{ borderRadius: 10, backgroundColor: 'rgba(0, 0, 0, 0.20)', padding: 8, marginVertical: 8 }}>

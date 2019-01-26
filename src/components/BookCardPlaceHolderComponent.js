@@ -1,19 +1,12 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import AppStyles from '../styles/AppStyles';
-import * as Progress from 'react-native-progress';
-import ProgressiveImage from 'react-native-image-progress';
-import { touchableButtonHandler } from '../utils/Utils';
 import Placeholder from 'rn-placeholder';
 import TouchableBounce from 'react-native/Libraries/Components/Touchable/TouchableBounce';
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 
-const { primaryThemeColor,
-        primaryBackgroundColor,
-        lightFontStyles,
-        cardBackgroundColor,
-        placeholderColor,
-        calculateFontSizeByPlatform } = AppStyles;
+const { cardBackgroundColor,
+        placeholderColor } = AppStyles;
 
 const BookCardPlaceHolderComponent = (props) => {
 
@@ -96,24 +89,7 @@ const BookCardPlaceHolderComponent = (props) => {
                         onReady={false}
                     />
 
-                </View>
-
-                {/* <View style={{
-
-                    padding: 2,
-                    marginTop: 2,
-                    backgroundColor: 'transparent'
-                }}>
-
-                    <Placeholder.Line
-                        hasRadius
-                        color={placeholderColor}
-                        animate={'fade'}
-                        width={'80%'}
-                        onReady={false}
-                    />
-
-                </View> */}
+                </View> 
 
             </View>
 

@@ -15,7 +15,6 @@ const { placeholderColor, cardBackgroundColor } = AppStyles;
 
 class BookDetailPlaceHolderComponent extends Component {
 
-
     render() {
 
         let { goBack } = this.props.navigation;

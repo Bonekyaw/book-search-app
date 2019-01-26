@@ -32,15 +32,22 @@ export default class App extends React.Component {
     setTimeout(() => SplashScreen.hide(), 500);
 
   };
+
   render() {
 
     return (
+
       <React.Fragment>
         {
           this.state.isFontLoaded ? (
+
             <AppContainer />
-          ) :
+
+          ) : (
+
             <View style={{ flex: 1, backgroundColor: primaryBackgroundColor }}></View>
+
+          )  
         }
       </React.Fragment>
     );

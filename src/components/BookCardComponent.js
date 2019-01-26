@@ -7,9 +7,7 @@ import { touchableButtonHandler } from '../utils/Utils';
 import TouchableBounce from 'react-native/Libraries/Components/Touchable/TouchableBounce';
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 
-const { primaryThemeColor,
-        primaryBackgroundColor,
-        lightFontStyles,
+const { lightFontStyles,
         placeholderColor,
         cardBackgroundColor,
         calculateFontSizeByPlatform } = AppStyles;

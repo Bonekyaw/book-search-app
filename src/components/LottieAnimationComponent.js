@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { 
-    View
-} from 'react-native';
+import { View } from 'react-native';
 import { DangerZone } from 'expo';
 import AppStyles from '../styles/AppStyles';
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
@@ -18,6 +16,7 @@ class LottieAnimationComponent extends Component {
         let { animationSource, style } = this.props;
 
         return (
+
             <View style={{ alignItems: 'center', backgroundColor: 'transparent', margin: responsiveHeight(0), height: responsiveHeight(45), width: responsiveWidth(100) }}>
 
                 <Lottie
@@ -31,8 +30,7 @@ class LottieAnimationComponent extends Component {
                         width: responsiveHeight(60),
                         height: responsiveHeight(60), ...style,
                         backgroundColor: primaryBackgroundColor,
-                    }}
-                />
+                    }} />
 
             </View>
         );

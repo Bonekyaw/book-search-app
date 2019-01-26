@@ -64,25 +64,6 @@ class SearchScreen extends Component {
 
                 <KeyboardAvoidingView enabled behavior={'position'}>
 
-                    {/* <View style={{ alignItems: 'center', backgroundColor: 'transparent', margin: responsiveHeight(0), height: responsiveHeight(45), width: responsiveWidth(100) }}>
-                        
-                            <Lottie
-                                loop
-                                autoPlay
-                                source={bookAnimation}
-                                ref={animation => { this.animation = animation; }}
-                                style={{
-
-                                    marginLeft: responsiveWidth(4),
-                                    width: responsiveHeight(60),
-                                    height: responsiveHeight(60),
-                                    backgroundColor: primaryBackgroundColor,
-                                }}
-                            />
-
-                        
-                    </View> */}
-
                     <LottieAnimationComponent animationSource={bookAnimation} />
 
                     <View style={{ alignItems: 'center', justifyContent: 'space-around', backgroundColor: 'transparent', padding: 4 }}>
