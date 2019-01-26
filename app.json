@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Book-Finder",
-    "slug": "Book-Finder",
+    "name": "Book Search",
+    "slug": "Book-Search-App",
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": [
@@ -22,8 +22,12 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "android": {
+      "package": "com.booksearch.app"
+    },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.booksearch.app"
     }
   }
 }
