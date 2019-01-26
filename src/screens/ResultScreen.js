@@ -43,7 +43,7 @@ class ResultScreen extends Component {
 
         let listData = getUniqueArray(BookData.map(book => {
 
-            let { volumeInfo: { title, authors, publisher, imageLinks }, id: bookId } = book;
+            let { volumeInfo: { title, authors, publisher, publishedDate, description, imageLinks }, id: bookId } = book;
 
             return {
 
@@ -51,8 +51,11 @@ class ResultScreen extends Component {
                 thumbnail: imageLinks ? imageLinks.thumbnail : defaultImageUrl,
                 title,
                 authors: authors ? authors.toString().replace(/,/g, ', ') : '-',
-                publisher: publisher ? publisher.toString().replace(/"/g, '') : '-'
+                publisher: publisher ? publisher.toString().replace(/"/g, '') : '-',
+                publishedDate: publishedDate ? publishedDate.substring(0, 4) : '-',
+                description: description ? description : 'No Description'
             };
+
         }), 'title');
 
         setTimeout(() => { this.setState({ isDataFetched: true, isListRefreshing: false, listData }); }, 2000, this);
@@ -66,11 +69,11 @@ class ResultScreen extends Component {
 
     _handleSearch = (filterText) => this.setState({ filterSearch: filterText });
 
-    _navigateToBook = (bookId) => {
+    _navigateToBook = (bookDetails) => {
 
         let { navigation } = this.props;
 
-        const navigationParams = { bookId };
+        const navigationParams = { bookDetails };
 
         navigation.navigate('BookDetailScreen', navigationParams);
     };
@@ -138,7 +141,9 @@ class ResultScreen extends Component {
                                     <React.Fragment>
 
                                         {
-                                            listData.map(({ thumbnail, title, authors, publisher, bookId }) => {
+                                            listData.map(bookDetails => {
+
+                                              let { thumbnail, title, authors, publisher, bookId } = bookDetails;
 
                                               return <BookCardComponent 
                                                         key={bookId}
@@ -146,7 +151,7 @@ class ResultScreen extends Component {
                                                         authors={authors}
                                                         publisher={publisher}
                                                         thumbnail={thumbnail}
-                                                        onPress={() => this._navigateToBook(bookId)}
+                                                        onPress={() => this._navigateToBook(bookDetails)}
                                                      />;
                                             })
                                         }

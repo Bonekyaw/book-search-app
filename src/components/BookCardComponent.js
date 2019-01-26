@@ -10,6 +10,7 @@ import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimen
 const { primaryThemeColor,
         primaryBackgroundColor,
         lightFontStyles,
+        placeholderColor,
         cardBackgroundColor,
         calculateFontSizeByPlatform } = AppStyles;
 
@@ -30,7 +31,7 @@ const BookCardComponent = (props) => {
 
                 <ProgressiveImage
                     source={{ uri: thumbnail }}
-                    style={{ borderRadius: 4, resizeMode: 'contain', backgroundColor: '#444', height: '100%', width: '100%' }}
+                    style={{ borderRadius: 4, resizeMode: 'contain', backgroundColor: placeholderColor, height: '100%', width: '100%' }}
                     imageStyle={{ borderRadius: 4 }}
                     indicator={Progress.Circle}
                     blurRadius={0}

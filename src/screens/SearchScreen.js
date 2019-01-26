@@ -16,7 +16,7 @@ import { touchableButtonHandler } from '../utils/Utils';
 import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 import AppConfig from '../config/App.Config';
 
-const { primaryBackgroundColor, lightFontStyles, calculateFontSizeByPlatform } = AppStyles;
+const { primaryThemeColor, primaryBackgroundColor, lightFontStyles, calculateFontSizeByPlatform } = AppStyles;
 const { lottieAnimationSources: { bookAnimation } } = AppConfig;
 const { Lottie } = DangerZone;
 
@@ -86,6 +86,7 @@ class SearchScreen extends Component {
                 <StatusBar barStyle={'light-content'} animated />
 
                 <KeyboardAvoidingView enabled behavior={'position'}>
+                
                     <View style={{ alignItems: 'center', backgroundColor: 'transparent', margin: responsiveHeight(0), height: responsiveHeight(45), width: responsiveWidth(100) }}>
                         
                             <Lottie
@@ -103,7 +104,9 @@ class SearchScreen extends Component {
                             />
                         
                     </View>
+
                     <View style={{ alignItems: 'center', justifyContent: 'space-around', backgroundColor: 'transparent', padding: 4 }}>
+
                         <SearchBar
                             round
                             noIcon
@@ -138,8 +141,8 @@ class SearchScreen extends Component {
                             }}
                             placeholder={'Search Books...'} />
 
-                            <TouchableBounce onPress={() => touchableButtonHandler(this._searchHandler)} style={{ backgroundColor: 'tomato', alignItems: 'center', justifyContent: 'center', padding: 8, borderRadius: 100, marginTop: responsiveHeight(2), height: responsiveHeight(8), width: responsiveWidth(40) }}>
-                                <ExpoIcon.Ionicons name={'ios-search'} size={calculateFontSizeByPlatform(4.40)} color={'#FFF'} />
+                            <TouchableBounce onPress={() => touchableButtonHandler(this._searchHandler)} style={{ backgroundColor: primaryThemeColor, alignItems: 'center', justifyContent: 'center', padding: 8, borderRadius: 100, marginTop: responsiveHeight(2), height: responsiveHeight(7.5), width: responsiveWidth(40) }}>
+                                <ExpoIcon.Ionicons name={'ios-search'} size={calculateFontSizeByPlatform(5.00)} color={'#FFF'} />
                             </TouchableBounce>
 
                         </View>
