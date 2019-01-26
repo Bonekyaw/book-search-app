@@ -1,4 +1,4 @@
-export const touchableButtonHandler = (onPressFunction) => {
+export const touchableButtonHandler = async (onPressFunction) => {
 
     setTimeout(() => { onPressFunction(); }, 400, this);
 };

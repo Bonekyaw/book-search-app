@@ -26,7 +26,7 @@ class SearchScreen extends Component {
         super(props);
         this.state = {
 
-            searchQuery: ''
+            searchQuery: 'subtle'
         };
     };
 

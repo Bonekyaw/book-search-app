@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { 
     View,
+    Text,
     Platform,
     RefreshControl,
     StyleSheet
@@ -80,10 +81,21 @@ class ResultScreen extends Component {
 
     render() {
 
-        let { isDataFetched, isListRefreshing, listData } = this.state;
+        let { isDataFetched, isListRefreshing, listData, filterSearch } = this.state;
+
+        let filteredListData = isDataFetched ? [...listData].filter(book => {
+
+            let { title } = book;
+
+            if (filterSearch === '') return book;
+            else if (title.toLowerCase().includes(filterSearch.toLowerCase())) return book;
+
+        }) : listData;
 
         return (
+
             <View style={styles.container}>
+
                 <Collapsible
                     backgroundColor={primaryBackgroundColor}
                     min={Constants.statusBarHeight}
@@ -103,10 +115,10 @@ class ResultScreen extends Component {
                                 noIcon
                                 lightTheme
                                 platform={'ios'}
-                                value={this.state.searchQuery}
+                                value={filterSearch}
                                 onChangeText={this._handleSearch}
                                 cancelButtonTitle={'cancel'}
-                                clearIcon={{ name: 'cancel', color: '#FFF', style: { fontSize: 24, marginTop: Platform.OS === 'ios' ? responsiveHeight(0.80) : responsiveHeight(1.2) } }}
+                                clearIcon={{ name: 'cancel', color: '#FFF', style: { fontSize: 20, marginTop: Platform.OS === 'ios' ? responsiveHeight(0.95) : responsiveHeight(1.25) } }}
                                 cancelButtonTitle={'Cancel'}
                                 containerStyle={{
 
@@ -126,7 +138,7 @@ class ResultScreen extends Component {
                                     padding: Platform.OS === 'ios' ? responsiveHeight(0.80) : 0,
                                     fontSize: calculateFontSizeByPlatform(4.00),
                                     backgroundColor: '#333',
-                                    height: Platform.OS === 'ios' ? responsiveHeight(8) : responsiveHeight(8)
+                                    height: Platform.OS === 'ios' ? responsiveHeight(6.5) : responsiveHeight(6.5)
                                 }}
                                 placeholder={'Search...'} />
                         </View>
@@ -141,19 +153,38 @@ class ResultScreen extends Component {
                                     <React.Fragment>
 
                                         {
-                                            listData.map(bookDetails => {
 
-                                              let { thumbnail, title, authors, publisher, bookId } = bookDetails;
+                                            filteredListData.length === 0 ? (
 
-                                              return <BookCardComponent 
-                                                        key={bookId}
-                                                        title={title}
-                                                        authors={authors}
-                                                        publisher={publisher}
-                                                        thumbnail={thumbnail}
-                                                        onPress={() => this._navigateToBook(bookDetails)}
-                                                     />;
-                                            })
+                                                <View style={{ alignItems: 'center', justifyContent: 'center', padding: 8, width: '100%', backgroundColor: 'transparent' }}>
+
+                                                    <Text style={{ color: '#FFF', fontSize: calculateFontSizeByPlatform(4.00), ...lightFontStyles }}>No Books Found</Text>
+                                                   
+                                                </View>
+
+                                            ) : (
+
+                                             <React.Fragment>
+                                                 {
+
+                                                   filteredListData.map(bookDetails => {
+
+                                                        let { thumbnail, title, authors, publisher, bookId } = bookDetails;
+
+                                                        return <BookCardComponent 
+                                                                    key={bookId}
+                                                                    title={title}
+                                                                    authors={authors}
+                                                                    publisher={publisher}
+                                                                    thumbnail={thumbnail}
+                                                                    onPress={() => this._navigateToBook(bookDetails)}
+                                                                />;
+                                                    })  
+                                                 }
+                                             </React.Fragment>
+
+                                            )
+
                                         }
 
                                     </React.Fragment>
@@ -172,6 +203,7 @@ class ResultScreen extends Component {
                         </View>
 
                     } />
+
             </View>
         );
     };

@@ -43,7 +43,7 @@ class BookDetailComponent extends Component {
     render() {
 
         let { bookData: { thumbnail, title, authors, publisher, publishedDate,
-                          description, images: { medium, large }, infoLink, webReaderLink }} = this.props;
+                          description, images: { medium, large }}} = this.props;
 
         let { goBack } = this.props.navigation;
 

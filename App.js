@@ -1,10 +1,11 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Font } from 'expo';
+import { Font, SplashScreen } from 'expo';
 import AppStyles from './src/styles/AppStyles';
 import AppContainer from './src/navigation/App.Navigation';
 
 const { primaryBackgroundColor } = AppStyles;
+
 export default class App extends React.Component {
 
   constructor(props) {
@@ -15,6 +16,8 @@ export default class App extends React.Component {
 
       isFontLoaded: false
     };
+
+    SplashScreen.preventAutoHide();
   };
 
   componentDidMount = async () => {
@@ -25,6 +28,8 @@ export default class App extends React.Component {
     });
 
     this.setState({ ...this.state, isFontLoaded: true });
+
+    setTimeout(() => SplashScreen.hide(), 500);
 
   };
   render() {

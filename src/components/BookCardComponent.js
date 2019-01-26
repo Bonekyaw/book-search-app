@@ -19,6 +19,7 @@ const BookCardComponent = (props) => {
     let { thumbnail, title, authors, publisher, onPress } = props;
 
     return (
+
         <TouchableBounce onPress={() => touchableButtonHandler(onPress)} style={{ flexDirection: 'row', width: responsiveWidth(95), padding: 6, marginVertical: 6, borderRadius: 4, backgroundColor: cardBackgroundColor }}>
 
             <View style={{
