@@ -4,16 +4,19 @@ import {
     Platform,
     StatusBar,
     KeyboardAvoidingView,
+    NetInfo,
     StyleSheet
 } from 'react-native';
 import { DangerZone } from 'expo';
 import { SearchBar } from 'react-native-elements';
 import AppStyles from '../styles/AppStyles';
 import * as ExpoIcon from '@expo/vector-icons';
+import DropdownAlert from 'react-native-dropdownalert';
 import TouchableBounce from 'react-native/Libraries/Components/Touchable/TouchableBounce';
 import { touchableButtonHandler } from '../utils/Utils';
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 import AppConfig from '../config/App.Config';
+import LottieAnimationComponent from '../components/LottieAnimationComponent';
 
 const { primaryThemeColor, primaryBackgroundColor, lightFontStyles, calculateFontSizeByPlatform } = AppStyles;
 const { lottieAnimationSources: { bookAnimation } } = AppConfig;
@@ -26,7 +29,7 @@ class SearchScreen extends Component {
         super(props);
         this.state = {
 
-            searchQuery: 'subtle'
+            searchQuery: 's'
         };
     };
 
@@ -34,43 +37,22 @@ class SearchScreen extends Component {
 
     componentWillMount = () => { setTimeout(() => { this.animation.play(); }, 100, this); };
 
-    // _playAnimation = () => {
-    //     // if (!this.state.animation) {
-    //     //     this._loadAnimationAsync();
-    //     // } else {
-    //         // this.animation.reset();
-    //         setTimeout(() => { this.animation.play(); }, 100, this);
-    //     // }
-    // };
-
-    // _loadAnimationAsync = async () => {
-    //     let result = await fetch(
-    //         'https://assets.lottiefiles.com/datafiles/kdNSsX7MXeXXT1u/data.json'
-    //     )
-    //         .then(data => {
-    //             return data.json();
-    //         })
-    //         .catch(error => {
-    //             console.error(error);
-    //         });
-    //     this.setState({ animation: result }, this._playAnimation);
-    // };
-
-    _searchHandler = () => {
+    _searchHandler = async () => {
 
         let { navigation } = this.props;
         let { searchQuery } = this.state;
+        let { type } = await NetInfo.getConnectionInfo();
         
         if(searchQuery === '') {
             
-            alert('Null search Query');
-
+            this.dropdown.alertWithType('info', 'Invalid', 'Cannot search for empty query');
+ 
             return;
         }
 
         const navigationParams = {
 
-            internetConnectivity: true,
+            internetConnectivity: false,
             searchQuery: encodeURI(searchQuery)
         };
 
@@ -101,8 +83,10 @@ class SearchScreen extends Component {
                                     backgroundColor: primaryBackgroundColor,
                                 }}
                             />
+
                         
                     </View>
+                    {/* <LottieAnimationComponent animationSource={bookAnimation} /> */}
 
                     <View style={{ alignItems: 'center', justifyContent: 'space-around', backgroundColor: 'transparent', padding: 4 }}>
 
@@ -146,6 +130,13 @@ class SearchScreen extends Component {
 
                         </View>
                     </KeyboardAvoidingView>
+
+                <DropdownAlert
+                    closeInterval={1000} ref={ref => this.dropdown = ref}
+                    inactiveStatusBarStyle={'light-content'}
+                    defaultContainer={{ padding: 8, flexDirection: 'row', marginTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight }}
+                    titleStyle={{ fontSize: 20, textAlign: 'left', color: 'white', fontFamily: 'Airbnb-Cereal', backgroundColor: 'transparent' }}
+                    messageStyle={{ fontSize: 16, textAlign: 'left', color: 'white', fontFamily: 'Airbnb-Cereal', backgroundColor: 'transparent' }} />
             </View>
         );
     };
