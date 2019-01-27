@@ -6,9 +6,8 @@
 ##### JavaScript (ES7+)
 ##### React Native : https://facebook.github.io/react-native/
 ##### React Native Elements: https://github.com/react-native-training/react-native-elements
-
+##### Lottie React Native: https://github.com/react-native-community/lottie-react-native
 ## Demonstration : (click to play)
-
 
 [![iOS-Demo](https://user-images.githubusercontent.com/29705703/51798211-27ed8780-2235-11e9-8b20-5a2fec7f1c9a.gif)]( "iOS-Demo")
 [![iOS-Demo](https://user-images.githubusercontent.com/29705703/51798210-2754f100-2235-11e9-8555-87ff5eab3d4a.gif)]( "iOS-Demo")
