@@ -161,7 +161,6 @@ class ResultScreen extends Component {
 
                         <View style={{ backgroundColor: primaryBackgroundColor, paddingVertical: 3, alignItems: 'center' }}>
 
-
                             
                             {
                                 noResult ? (
