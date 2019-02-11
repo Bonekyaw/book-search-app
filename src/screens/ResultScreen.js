@@ -213,13 +213,13 @@ class ResultScreen extends Component {
                                                                                         let { thumbnail, title, authors, publisher, bookId } = bookDetails;
 
                                                                                         return <BookCardComponent
-                                                                                            key={bookId}
-                                                                                            title={title}
-                                                                                            authors={authors}
-                                                                                            publisher={publisher}
-                                                                                            thumbnail={thumbnail}
-                                                                                            onPress={() => this._navigateToBook(bookDetails)}
-                                                                                        />;
+                                                                                                    key={bookId}
+                                                                                                    title={title}
+                                                                                                    authors={authors}
+                                                                                                    publisher={publisher}
+                                                                                                    thumbnail={thumbnail}
+                                                                                                    onPress={() => this._navigateToBook(bookDetails)}
+                                                                                                />;
                                                                                     })
                                                                                 }
                                                                             </React.Fragment>
