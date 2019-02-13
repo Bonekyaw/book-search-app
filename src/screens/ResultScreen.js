@@ -19,7 +19,8 @@ import LottieAnimationComponent from '../components/LottieAnimationComponent';
 
 const { primaryBackgroundColor, lightFontStyles, calculateFontSizeByPlatform } = AppStyles;
 const { apiEndPoint, defaultImageUrl, 
-        lottieAnimationSources: { networkAnimation, noResultAnimation }} = AppConfig;
+        lottieAnimationSources: { networkAnimation,
+                                  noResultAnimation }} = AppConfig;
 
 class ResultScreen extends Component {
 
@@ -31,7 +32,7 @@ class ResultScreen extends Component {
 
             isDataFetched: false,
             isListRefreshing: false,
-            listData: [...new Array(10)],
+            listData: [...new Array(10).fill({})],
             noResult: false,
             filterSearch: ''
         };
